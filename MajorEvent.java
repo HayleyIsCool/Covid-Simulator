@@ -25,5 +25,6 @@ class MajorEvent {
         player.covid += 5;
       }
     }
+    s.close();
   }
 }

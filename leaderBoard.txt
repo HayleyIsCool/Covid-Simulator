@@ -1,6 +1,7 @@
 espanol_mi_quarto 27
 holden_macoc_family_patriarch 80
 YuryWithTheBadHaircut 0
+yo 0
 balsespanol_mi_quarto 9
 Iburger 10
 hac 10

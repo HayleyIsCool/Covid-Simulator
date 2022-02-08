@@ -1,6 +1,5 @@
 import java.util.*;
 //package io;
-import java.util.*;
 import java.io.*;
 import java.lang.*;
 //currently on 132nd generation of macoc bloodline
@@ -29,11 +28,13 @@ class Main {
     Scanner s = new Scanner(System.in);
     Characters player = new Characters("Harry", "Potty", 12, 8, 3, 100, 0, false);
     while(start == false){
-      System.out.print("Sign In(1), Log In(2), LeaderBoard(3): ");
+      System.out.print("Sign Up(1), Log In(2), LeaderBoard(3): ");
       String player3 = s.nextLine();
       try {
         info = new FileReader("info.txt");
         lead = new FileReader("leaderBoard.txt");
+        word = "";
+        highScore = "";
         int i;    
         while((i = info.read()) != -1) {
           if((char) i == ' '){
@@ -80,15 +81,15 @@ class Main {
         e.printStackTrace();
       }
       saveLeadList = new int[saveLead.size()];
-      saveLeadList2 = new String[saveLead.size()];
+      saveLeadList2 = new String[saveLeadList.length];
       int v = 0;
       for (String i : saveLead.values()) {
-        saveLeadList[v] = Integer.parseInt(i);
+        saveLeadList[v] = java.lang.Integer.parseInt(i.trim());
         v += 1;
       }
       Arrays.sort(saveLeadList);
       for(String user : saveLead.keySet()){
-        int num = Integer.parseInt(saveLead.get(user));
+        int num = java.lang.Integer.parseInt(saveLead.get(user).trim());
         if(num == saveLeadList[saveLeadList.length-1]){
           saveLeadList2[saveLeadList2.length-1] = user;
         }
@@ -217,7 +218,7 @@ class Main {
             System.out.println("You died of Covid. Game Over!");
             System.out.println("You survived for " + player.turn + " turns.");
             player.alive = false;
-            if(player.turn >= Integer.parseInt(highScore)){
+            if(player.turn >= java.lang.Integer.parseInt(highScore.trim())){
               highScore = String.valueOf(player.turn);
             }
             break;
@@ -227,7 +228,7 @@ class Main {
         System.out.println("You lost all your money and went Bankrupt. Game Over!");
         System.out.println("You survived for " + player.turn + " turns.");
         player.alive = false;
-        if(player.turn >= Integer.parseInt(highScore)){
+        if(player.turn >= java.lang.Integer.parseInt(highScore.trim())){
           highScore = String.valueOf(player.turn);
         }
         break;
@@ -236,7 +237,7 @@ class Main {
         System.out.println("You were too sad and commited suicide. Game Over!");
         System.out.println("You survived for " + player.turn + " turns.");
         player.alive = false;
-        if(player.turn >= Integer.parseInt(highScore)){
+        if(player.turn >= java.lang.Integer.parseInt(highScore.trim())){
           highScore = String.valueOf(player.turn);
         }
         break;
@@ -273,7 +274,7 @@ class Main {
         }
       }
     }
-    if(player.turn > Integer.parseInt(saveLead.get(user))){
+    if(player.turn > java.lang.Integer.parseInt(saveLead.get(user.trim()))){
       saveLead.remove(user);
       saveLead.put(user,String.valueOf(player.turn));
       System.out.println("New High Score!");
@@ -296,5 +297,6 @@ class Main {
         e.printStackTrace();
       }  
     }
+    s.close();
   }
 }
